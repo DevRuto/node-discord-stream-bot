@@ -1,3 +1,4 @@
+const { discord } = require('./bot');
 /*
 {
   "id": "0123456789",
@@ -14,10 +15,14 @@
 }
 */
 module.exports = {
-  onStreamLive(username, event) {
-    console.log(`[DISCORD] Stream Online Event - ${username}`);
+  async onStreamLive(username, event) {
+    console.log(`[DISCORD] Stream Online Event - ${username} - ${JSON.stringify(event)}`);
+    const channel = await discord.channels.fetch('793736736575324213');
+    channel.send(`Stream online ${username}`);
   },
-  onStreamOffline(username) {
+  async onStreamOffline(username) {
     console.log(`[DISCORD] Stream Offline Event - ${username}`);
+    const channel = await discord.channels.fetch('793736736575324213');
+    channel.send(`Stream offline ${username}`);
   },
 };

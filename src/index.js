@@ -1,13 +1,11 @@
-// const twitch = require('./twitch/server');
-const service = require('./twitch/service');
+const twitch = require('./twitch/server');
+const discord = require('./discord/bot');
 
-// twitch.start();
 async function main() {
-  console.log('Started');
+  await twitch.start();
+  await discord.start();
 
-  const id = await service.getGameName('33214');
-  await service.getGameName('33214');
-  console.log(id);
+  console.log('App started');
 }
 
 main().then();

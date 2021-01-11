@@ -11,6 +11,6 @@ app.use(routes);
 module.exports = {
   start() {
     app.listen(server_port);
-    console.log(`Listening on port ${server_port}`);
+    console.log(`Twitch Webhook Listener on port ${server_port}`);
   },
 };
