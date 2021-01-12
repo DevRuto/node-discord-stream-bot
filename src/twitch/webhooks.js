@@ -6,7 +6,7 @@ const router = koaRouter({
 });
 
 router.get('/test', (ctx) => {
-  ctx.body = 'asdf';
+  ctx.body = 'Hi there';
 });
 
 // TwitchAPI Subscription Challenge
