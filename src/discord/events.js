@@ -34,6 +34,8 @@ async function handleStreamEvent(username, event) {
       if (offline) {
         console.log(`[DISCORD] Stream Offline Event - ${username}`);
         channel.send(`${username} went offline`);
+
+        // Vods?
       } else {
         console.log(`[DISCORD] Stream Online Event - ${username} - ${JSON.stringify(event)}`);
         channel.send(`${username} went live`);
