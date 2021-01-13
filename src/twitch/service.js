@@ -55,7 +55,7 @@ module.exports = {
     });
     return response.status === 200;
   },
-  async getUserId(username) {
+  async getUser(username) {
     const response = await axios.get('https://api.twitch.tv/helix/users', {
       params: {
         login: username,
@@ -65,9 +65,9 @@ module.exports = {
         authorization: `Bearer ${await getAuthToken()}`,
       },
     });
-    const id = response.data.data[0]?.id;
-    console.log(`[TSERVICE] User Id Query (${username}) - ${id}`);
-    return id;
+    const user = response.data.data[0];
+    console.log(`[TSERVICE] User Query (${username}) - ${user.id}`);
+    return user;
   },
   async getGameName(game_id) {
     let name = await redis.hget('game_name', game_id);
@@ -102,24 +102,6 @@ module.exports = {
         authorization: `Bearer ${await getAuthToken()}`,
       },
     });
-    /*
-    {
-      "id": "234482848",
-      "user_id": "67955580",
-      "user_name": "ChewieMelodies",
-      "title": "-",
-      "description": "",
-      "created_at": "2018-03-02T20:53:41Z",
-      "published_at": "2018-03-02T20:53:41Z",
-      "url": "https://www.twitch.tv/videos/234482848",
-      "thumbnail_url": "https://static-cdn.jtvnw.net/s3_vods/bebc8cba2926d1967418_chewiemelodies_27786761696_805342775/thumb/thumb0-%{width}x%{height}.jpg",
-      "viewable": "public",
-      "view_count": 142,
-      "language": "en",
-      "type": "archive",
-      "duration": "3h8m33s"
-    }
-    */
     return response.data.data[0];
-  }
+  },
 };
